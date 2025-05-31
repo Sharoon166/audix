@@ -3,37 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { products } from "@/constants";
 
-const products = [
-  {
-    id: 1,
-    name: "Wireless N7007",
-    description:
-      "Experience the freedom of wireless sound with our N7007 earbuds. Engineered for music lovers, gamers, and everyday listeners.",
-    image: "/earbuds/skywave.webp",
-    price: "$199.99",
-  },
-  {
-    id: 2,
-    name: "StudioFlex Pro",
-    description:
-      "Professional-grade audio quality with premium comfort. Perfect for studio sessions and extended listening.",
-    image: "/earbuds/studioflex.png",
-    price: "$349.99",
-  },
-  {
-    id: 3,
-    name: "GamePulse Elite",
-    description:
-      "Ultra-low latency gaming earbuds with immersive 3D audio. Dominate your games with crystal-clear communication.",
-    image: "/earbuds/gamepulse.png",
-    price: "$229.99",
-  },
-];
-
-export default function Slideshow() {
+export default function Slideshow({ slidechange, slidelength }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    slidelength(products.length);
+  }, [slidelength]);
+
+  useEffect(() => {
+    slidechange(currentIndex);
+  }, [currentIndex, slidechange]);
 
   const handleLeftClick = () => {
     setCurrentIndex((prev) => (prev === 0 ? products.length - 1 : prev - 1));
@@ -55,19 +37,19 @@ export default function Slideshow() {
   };
 
   const imageVariants = {
-    main: {
+    first: {
       initial: { x: 100, opacity: 0, scale: 1 },
-      animate: { x: 0, opacity: 1, scale: 1.25 },
+      animate: { x: 0, opacity: 1, scale: 1.1 },
       exit: { x: -100, opacity: 0, scale: 1 },
     },
-    secondary: {
+    second: {
       initial: { x: 80, opacity: 0, scale: 1 },
-      animate: { x: 0, opacity: 0.6, scale: 1.1 },
+      animate: { x: 0, opacity: 0.6, scale: 1 },
       exit: { x: -80, opacity: 0, scale: 1 },
     },
-    tertiary: {
+    third: {
       initial: { x: 60, opacity: 0, scale: 1 },
-      animate: { x: 0, opacity: 0.3, scale: 1 },
+      animate: { x: 0, opacity: 0.3, scale: 0.8 },
       exit: { x: -60, opacity: 0, scale: 1 },
     },
   };
@@ -120,8 +102,8 @@ export default function Slideshow() {
         </AnimatePresence>
 
         <Link
-          href="#"
-          className="px-0.5 text-sm font-semibold mt-4 inline-flex items-center border-b-2 border-transparent hover:border-zinc-950 cursor-pointer"
+          href={`/product/${currentProduct.id}`}
+          className="px-0.5 mb-4 text-sm font-semibold mt-4 inline-flex items-center border-b-2 border-transparent hover:border-zinc-950 cursor-pointer"
         >
           Explore Now
           <LuArrowUpRight className="ml-2 inline" />
@@ -133,7 +115,7 @@ export default function Slideshow() {
           <motion.div
             key={`main-${currentIndex}`}
             className="col-span-3"
-            variants={imageVariants.main}
+            variants={imageVariants.first}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -153,7 +135,7 @@ export default function Slideshow() {
           <motion.div
             key={`secondary-${currentIndex}`}
             className="col-span-2 blur-sm"
-            variants={imageVariants.secondary}
+            variants={imageVariants.second}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -173,7 +155,7 @@ export default function Slideshow() {
           <motion.div
             key={`tertiary-${currentIndex}`}
             className="blur-md"
-            variants={imageVariants.tertiary}
+            variants={imageVariants.third}
             initial="initial"
             animate="animate"
             exit="exit"
