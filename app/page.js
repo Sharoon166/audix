@@ -2,23 +2,14 @@
 import Header from "@/components/header";
 import Slideshow from "@/components/slideshow";
 import Footer from "@/components/footer";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [slide, setSlide] = useState(0);
   const [slideLength, setSlideLength] = useState(0);
 
-  // Use useCallback to prevent unnecessary re-renders
-  const handleSlideChange = useCallback((newSlide) => {
-    setSlide(newSlide);
-  }, []);
-
-  const handleSlideLengthChange = useCallback((length) => {
-    setSlideLength(length);
-  }, []);
-
   return (
-    <div className="min-h-screen max-w-[min(90%,1440px)] mx-auto sm:p-8 flex flex-col">
+    <div className="min-h-screen max-w-[min(90%,1440px)] mx-auto py-6 sm:p-8 flex flex-col">
       <Header />
 
       <main className="relative grow grid grid-cols-1 md:grid-cols-3 place-content-center place-items-center">
@@ -49,8 +40,8 @@ export default function Home() {
         </div>
         {/* End Gradient Blob */}
         <Slideshow
-          slidechange={handleSlideChange}
-          slidelength={handleSlideLengthChange}
+          setSlide={setSlide}
+          setSlideLength={setSlideLength}
         />
       </main>
 

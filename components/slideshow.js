@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
@@ -6,22 +7,33 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { products } from "@/constants";
 
-export default function Slideshow({ slidechange, slidelength }) {
+export default function Slideshow({ setSlide, setSlideLength }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 for left, 1 for right
 
   useEffect(() => {
-    slidelength(products.length);
-  }, [slidelength]);
+    setSlideLength(products.length);
+  }, [setSlideLength]);
 
   useEffect(() => {
-    slidechange(currentIndex);
-  }, [currentIndex, slidechange]);
+    setSlide(currentIndex);
+  }, [currentIndex, setSlide]);
+
+  const handleMouseEnter = (divId) => {
+    if (divId === 'left-div') {
+      setDirection(-1);
+    } else if (divId === 'right-div') {
+      setDirection(1);
+    }
+  };
 
   const handleLeftClick = () => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? products.length - 1 : prev - 1));
   };
 
   const handleRightClick = () => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev === products.length - 1 ? 0 : prev + 1));
   };
 
@@ -31,26 +43,26 @@ export default function Slideshow({ slidechange, slidelength }) {
   };
 
   const textVariants = {
-    initial: { opacity: 0, y: 20 },
+    initial: (direction) => ({ opacity: 0, y: direction * 20 }),
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
+    exit: (direction) => ({ opacity: 0, y: direction * -20 }),
   };
 
   const imageVariants = {
     first: {
-      initial: { x: 100, opacity: 0, scale: 1 },
+      initial: (direction) => ({ x: direction * 100, opacity: 0, scale: 1 }),
       animate: { x: 0, opacity: 1, scale: 1.1 },
-      exit: { x: -100, opacity: 0, scale: 1 },
+      exit: (direction) => ({ x: direction * -100, opacity: 0, scale: 1 }),
     },
     second: {
-      initial: { x: 80, opacity: 0, scale: 1 },
+      initial: (direction) => ({ x: direction * 80, opacity: 0, scale: 1 }),
       animate: { x: 0, opacity: 0.6, scale: 1 },
-      exit: { x: -80, opacity: 0, scale: 1 },
+      exit: (direction) => ({ x: direction * -80, opacity: 0, scale: 1 }),
     },
     third: {
-      initial: { x: 60, opacity: 0, scale: 1 },
+      initial: (direction) => ({ x: direction * 60, opacity: 0, scale: 1 }),
       animate: { x: 0, opacity: 0.3, scale: 0.8 },
-      exit: { x: -60, opacity: 0, scale: 1 },
+      exit: (direction) => ({ x: direction * -60, opacity: 0, scale: 1 }),
     },
   };
 
@@ -66,6 +78,7 @@ export default function Slideshow({ slidechange, slidelength }) {
             initial="initial"
             animate="animate"
             exit="exit"
+            custom={direction}
             transition={{ duration: 0.3 }}
           >
             <h1 className="text-2xl font-semibold font-molgan leading-tight">
@@ -81,6 +94,7 @@ export default function Slideshow({ slidechange, slidelength }) {
             initial="initial"
             animate="animate"
             exit="exit"
+            custom={direction}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
             {currentProduct.description}
@@ -94,6 +108,7 @@ export default function Slideshow({ slidechange, slidelength }) {
             initial="initial"
             animate="animate"
             exit="exit"
+            custom={direction}
             transition={{ duration: 0.3, delay: 0.2 }}
             className="text-lg font-semibold text-zinc-700"
           >
@@ -119,6 +134,7 @@ export default function Slideshow({ slidechange, slidelength }) {
             initial="initial"
             animate="animate"
             exit="exit"
+            custom={direction}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <Image
@@ -139,6 +155,7 @@ export default function Slideshow({ slidechange, slidelength }) {
             initial="initial"
             animate="animate"
             exit="exit"
+            custom={direction}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
           >
             <Image
@@ -159,6 +176,7 @@ export default function Slideshow({ slidechange, slidelength }) {
             initial="initial"
             animate="animate"
             exit="exit"
+            custom={direction}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
           >
             <Image
@@ -175,8 +193,18 @@ export default function Slideshow({ slidechange, slidelength }) {
           aria-label="hidden"
           aria-hidden="true"
         >
-          <div className="w-1/3 " id="left-div" onClick={handleLeftClick} />
-          <div className="w-2/3 " id="right-div" onClick={handleRightClick} />
+          <div 
+            className="w-1/3 leftdiv" 
+            id="left-div" 
+            onClick={handleLeftClick}
+            onMouseEnter={() => handleMouseEnter('left-div')}
+          />
+          <div 
+            className="w-2/3 rightdiv" 
+            id="right-div" 
+            onClick={handleRightClick}
+            onMouseEnter={() => handleMouseEnter('right-div')}
+          />
         </div>
       </div>
     </>

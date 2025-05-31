@@ -23,10 +23,19 @@
 body {
   background-color: #fefefe ;
   color: var(--background);
+  overflow-x: hidden;
 }
 .rightdiv {
   cursor: url('/right.png'), auto;
 }
 .leftdiv {
   cursor: url('/left.png'), auto;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;  
 }

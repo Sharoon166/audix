@@ -3,7 +3,9 @@ import Link from "next/link";
 export default function Header() {
     return (
       <header className="flex items-center justify-between font-sans">
-        <h2 className="font-molgan text-2xl font-bold">Audix</h2>
+        <Link href="/">
+          <h2 className="font-molgan text-2xl font-bold">Audix</h2>
+        </Link>
         <nav>
           <ul className="flex items-center gap-4 text-sm">
             <li>

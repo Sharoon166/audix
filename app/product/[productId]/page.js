@@ -3,19 +3,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import { GoArrowUpLeft, GoArrowUpRight } from "react-icons/go";
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/constants";
+import { collections, products } from "@/constants";
 import { useParams } from "next/navigation";
+
 export default function Page() {
-  const params = useParams();
-  const id = params.id;
-  const product = products.find((p) => p.id == id);
+  const { productId } = useParams();
+  const product = products.find((product) => product.id == productId);
+  const collection = collections.find((collection) => collection.products.includes(Number(productId)));
 
   return (
-    <>
-      <header className="flex flex-col sm:flex-row items-center justify-between w-[95%] sm:w-[85%] p-4  mx-auto font-sans">
-        <h2 className="font-molgan text-xl sm:text-2xl font-bold mb-4 sm:mb-0">
-          Audix
-        </h2>
+    <div className="w-[95%] sm:w-[85%] p-4  mx-auto ">
+      <header className="flex flex-col sm:flex-row items-center justify-between font-sans">
+        <Link href="/">
+          <h2 className="font-molgan text-xl sm:text-2xl font-bold mb-4 sm:mb-0">
+            Audix
+          </h2>
+        </Link>
         <nav>
           <ul className="flex items-center gap-2 sm:gap-4 text-sm">
             <li className="flex justify-end p-3 sm:p-6">
@@ -35,16 +38,16 @@ export default function Page() {
       </header>
       <AnimatePresence>
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, zIndex: -99 }}
+          animate={{ opacity: 1}}
+          exit={{ opacity: 0 }}
           transition={{ duration: 2 }}
         >
           <div className="fixed top-[5%] left-[1%] h-[90vh] w-full max-w-2xl pointer-events-none -z-50">
             {/* First SVG */}
             <motion.svg
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1.2, opacity: 0.7 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
               transition={{ duration: 1, ease: "easeOut" }}
               viewBox="0 0 200 200"
               xmlns="http://www.w3.org/2000/svg"
@@ -59,8 +62,8 @@ export default function Page() {
 
             {/* Second SVG */}
             <motion.svg
-              initial={{ scale: 0.5, opacity: 0, x: 60 }}
-              animate={{ scale: 1.1, opacity: 0.6, x: 0 }}
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 0.6, x: 0 }}
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
               viewBox="0 0 200 200"
               xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +79,7 @@ export default function Page() {
         </motion.div>
       </AnimatePresence>
       <div className="flex flex-col lg:flex-row items-center gap-4 justify-center  w-[95vw] lg:w-[80vw] m-auto">
-        <div className="p-4 md:p-8 lg:p-16">
+        <div className="p-4 md:p-8 lg:p-16 z-50">
           <Image
             src={product.image}
             width={600}
@@ -94,20 +97,23 @@ export default function Page() {
             <p className="w-full md:w-72">{product.description}</p>
             <p className="w-full md:w-72">{product.description}</p>
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-2 overflow-x-auto max-w-full">
-            {product.features.map((feauture, index) => (
-              <div className="w-full md:w-60 space-y-1 flex-shrink-0">
+          <div id="right-div" className="flex flex-col md:flex-row  gap-4 md:gap-2 overflow-x-auto no-scrollbar max-w-full">
+            {product.features.map(({ heading, detail }) => (
+              <div
+                key={heading}
+                className="w-full md:w-60 space-y-1 flex-shrink-0"
+              >
                 <h2 className="text-lg md:text-xl font-semibold">
-                  {feauture.heading}
+                  {heading}
                 </h2>
-                <p>{feauture.detail}</p>
+                <p>{detail}</p>
               </div>
             ))}
           </div>
           <div className="h-[2px] mt-10 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
           <div className="flex justify-end p-4 md:p-6">
             <Link
-              href={"#"}
+              href={`/collection/${collection?.id}`}
               className="flex items-center text-sm md:text-md font-semibold hover:text-gray-600 transition-colors duration-300 group"
             >
               Watch Collection
@@ -122,6 +128,6 @@ export default function Page() {
       <footer className="text-sm flex justify-between items-center">
         <p>&copy; {new Date().getFullYear()} Audix. All rights reserved.</p>
       </footer>
-    </>
+    </div>
   );
 }
