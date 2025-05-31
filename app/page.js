@@ -45,7 +45,7 @@ export default function Home() {
         />
       </main>
 
-      <Footer currentslide={slide} length={slideLength} />
+      <Footer slide={slide} slideLength={slideLength} />
     </div>
   );
 }

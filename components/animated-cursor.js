@@ -28,7 +28,7 @@ export default function AnimatedCursor() {
   return (
     <>
       <div
-        className="fixed pointer-events-none z-50 transition-transform duration-150 ease-out"
+        className="fixed pointer-events-none z-50 transition-transform duration-150 ease-out cursor-none"
         style={{
           top: position.y - 12,
           left: position.x - 12,

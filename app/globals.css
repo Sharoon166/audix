@@ -21,21 +21,262 @@
 }
 
 body {
-  background-color: #fefefe ;
+  background-color: #fefefe;
   color: var(--background);
   overflow-x: hidden;
 }
 .rightdiv {
-  cursor: url('/right.png'), auto;
+  cursor: url("/right.png"), auto;
 }
 .leftdiv {
-  cursor: url('/left.png'), auto;
+  cursor: url("/left.png"), auto;
 }
 .no-scrollbar {
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;  
+  display: none;
+}
+
+/* Add these view transition styles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+}
+
+::view-transition-old(product-image),
+::view-transition-new(product-image) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Custom transition for product elements */
+[style*="view-transition-name: product-image"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: product-title"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: product-description"] {
+  contain: layout style paint;
+}
+
+/* Smooth page transitions */
+::view-transition-old(root) {
+  animation: slide-out-left 0.5s ease-in-out;
+}
+
+::view-transition-new(root) {
+  animation: slide-in-right 0.5s ease-in-out;
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Add these view transition styles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+}
+
+::view-transition-old(product-image),
+::view-transition-new(product-image) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Custom transition for product elements */
+[style*="view-transition-name: product-image"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: product-title"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: product-description"] {
+  contain: layout style paint;
+}
+
+/* Collection-specific transitions */
+[style*="view-transition-name: collection-image"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: collection-title"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: collection-description"] {
+  contain: layout style paint;
+}
+
+[style*="view-transition-name: collection-feature"] {
+  contain: layout style paint;
+}
+
+/* Different transition for product pages */
+::view-transition-old(root):has([data-page="product"]) {
+  animation: slide-out-left 0.5s ease-in-out;
+}
+
+::view-transition-new(root):has([data-page="product"]) {
+  animation: slide-in-right 0.5s ease-in-out;
+}
+
+/* Different transition for collection pages */
+::view-transition-old(root):has([data-page="collection"]) {
+  animation: fade-scale-out 0.6s ease-in-out;
+}
+
+::view-transition-new(root):has([data-page="collection"]) {
+  animation: fade-scale-in 0.6s ease-in-out;
+}
+
+/* Collection-specific image transitions */
+::view-transition-old(collection-image) {
+  animation: collection-image-out 0.7s ease-in-out;
+}
+
+::view-transition-new(collection-image) {
+  animation: collection-image-in 0.7s ease-in-out;
+}
+
+/* Collection title transitions */
+::view-transition-old(collection-title) {
+  animation: collection-text-out 0.5s ease-in-out;
+}
+
+::view-transition-new(collection-title) {
+  animation: collection-text-in 0.5s ease-in-out;
+}
+
+/* Product page animations */
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Collection page animations */
+@keyframes fade-scale-out {
+  to {
+    transform: scale(0.9) rotateY(-15deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes fade-scale-in {
+  from {
+    transform: scale(1.1) rotateY(15deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+/* Collection image specific animations */
+@keyframes collection-image-out {
+  to {
+    transform: scale(0.8) rotate(-5deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+@keyframes collection-image-in {
+  from {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+/* Collection text animations */
+@keyframes collection-text-out {
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes collection-text-in {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Smooth transitions for collection features */
+::view-transition-old(collection-feature) {
+  animation: feature-slide-out 0.4s ease-in-out;
+}
+
+::view-transition-new(collection-feature) {
+  animation: feature-slide-in 0.4s ease-in-out;
+}
+
+@keyframes feature-slide-out {
+  to {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+}
+
+@keyframes feature-slide-in {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

@@ -27,6 +27,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <ViewTransitions>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${molgan.variable} antialiased`}
@@ -36,5 +37,6 @@ export default function RootLayout({ children }) {
           {children}
         </body>
       </html>
+    </ViewTransitions>
   );
 }
