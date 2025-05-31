@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -20,9 +20,9 @@ export default function Slideshow({ setSlide, setSlideLength }) {
   }, [currentIndex, setSlide]);
 
   const handleMouseEnter = (divId) => {
-    if (divId === 'left-div') {
+    if (divId === "left-div") {
       setDirection(-1);
-    } else if (divId === 'right-div') {
+    } else if (divId === "right-div") {
       setDirection(1);
     }
   };
@@ -80,6 +80,7 @@ export default function Slideshow({ setSlide, setSlideLength }) {
             exit="exit"
             custom={direction}
             transition={{ duration: 0.3 }}
+            style={{ viewTransitionName: `product-title-${currentProduct.id}` }}
           >
             <h1 className="text-2xl font-semibold font-molgan leading-tight">
               {currentProduct.name} &trade;
@@ -96,6 +97,7 @@ export default function Slideshow({ setSlide, setSlideLength }) {
             exit="exit"
             custom={direction}
             transition={{ duration: 0.3, delay: 0.1 }}
+            style={{ viewTransitionName: `product-description-${currentProduct.id}` }}
           >
             {currentProduct.description}
           </motion.p>
@@ -111,6 +113,7 @@ export default function Slideshow({ setSlide, setSlideLength }) {
             custom={direction}
             transition={{ duration: 0.3, delay: 0.2 }}
             className="text-lg font-semibold text-zinc-700"
+            style={{ viewTransitionName: `product-price-${currentProduct.id}` }}
           >
             {currentProduct.price}
           </motion.div>
@@ -136,6 +139,7 @@ export default function Slideshow({ setSlide, setSlideLength }) {
             exit="exit"
             custom={direction}
             transition={{ duration: 0.5, ease: "easeInOut" }}
+            style={{ viewTransitionName: `product-image-${currentProduct.id}` }}
           >
             <Image
               src={getImageAtIndex(0).image}
@@ -189,21 +193,21 @@ export default function Slideshow({ setSlide, setSlideLength }) {
         </AnimatePresence>
 
         <div
-          className="absolute top-0 left-0 h-full w-full flex cursor-none z-10"
+          className="absolute top-0 left-0 h-full w-full flex  z-10"
           aria-label="hidden"
           aria-hidden="true"
         >
-          <div 
-            className="w-1/3 leftdiv" 
-            id="left-div" 
+          <div
+            className="w-1/3 cursor-none leftdiv"
+            id="left-div"
             onClick={handleLeftClick}
-            onMouseEnter={() => handleMouseEnter('left-div')}
+            onMouseEnter={() => handleMouseEnter("left-div")}
           />
-          <div 
-            className="w-2/3 rightdiv" 
-            id="right-div" 
+          <div
+            className="w-2/3 cursor-none rightdiv"
+            id="right-div"
             onClick={handleRightClick}
-            onMouseEnter={() => handleMouseEnter('right-div')}
+            onMouseEnter={() => handleMouseEnter("right-div")}
           />
         </div>
       </div>

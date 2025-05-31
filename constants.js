@@ -9,17 +9,19 @@ export const products = [
     features: [
       {
         heading: "Wireless",
-        detail: "Active Noise Cancellation, 30-hour battery life, Bluetooth 5.2, Water resistant"
+        detail:
+          "Active Noise Cancellation, 30-hour battery life, Bluetooth 5.2, Water resistant",
       },
       {
         heading: "Comfort",
-        detail: "Ergonomic design, Lightweight construction, Multiple ear tip sizes"
+        detail:
+          "Ergonomic design, Lightweight construction, Multiple ear tip sizes",
       },
       {
         heading: "Sound Quality",
-        detail: "Dynamic drivers, Deep bass response, Clear mids and highs"
-      }
-    ]
+        detail: "Dynamic drivers, Deep bass response, Clear mids and highs",
+      },
+    ],
   },
   {
     id: 2,
@@ -31,17 +33,19 @@ export const products = [
     features: [
       {
         heading: "Studio Quality",
-        detail: "Hi-Fi audio, 40mm drivers, Memory foam cushions, Foldable design"
+        detail:
+          "Hi-Fi audio, 40mm drivers, Memory foam cushions, Foldable design",
       },
       {
         heading: "Professional",
-        detail: "Balanced sound signature, Pro-grade cables, Dual input options"
+        detail:
+          "Balanced sound signature, Pro-grade cables, Dual input options",
       },
       {
         heading: "Durability",
-        detail: "Metal construction, Replaceable parts, Heavy-duty headband"
-      }
-    ]
+        detail: "Metal construction, Replaceable parts, Heavy-duty headband",
+      },
+    ],
   },
   {
     id: 3,
@@ -53,17 +57,23 @@ export const products = [
     features: [
       {
         heading: "Gaming",
-        detail: "7.1 surround sound, RGB lighting, Detachable mic, Low latency mode"
+        detail:
+          "7.1 surround sound, RGB lighting, Detachable mic, Low latency mode",
       },
       {
         heading: "Connectivity",
-        detail: "Multi-platform support, Quick switch function, Wireless/wired modes"
+        detail:
+          "Multi-platform support, Quick switch function, Wireless/wired modes",
       },
       {
         heading: "Customization",
-        detail: "Programmable buttons, Custom EQ settings, RGB color profiles"
-      }
-    ]
+        detail: "Programmable buttons, Custom EQ settings, RGB color profiles",
+      },
+      {
+        heading: "Customizable",
+        detail: "Programmable buttons, Custom EQ settings, RGB color profiles",
+      },
+    ],
   },
 ];
 
@@ -71,23 +81,24 @@ export const collections = [
   {
     id: 1,
     name: "Wireless Essentials",
-    description: "A curated set of our best wireless audio products for on-the-go listening.",
+    description:
+      "A curated set of our best wireless audio products for on-the-go listening.",
     image: "/collections/wireless-essentials.webp",
     products: [1, 3], // references product ids
     features: [
       {
         heading: "Freedom",
-        detail: "No wires, no limits. Enjoy music anywhere."
+        detail: "No wires, no limits. Enjoy music anywhere.",
       },
       {
         heading: "Versatility",
-        detail: "Perfect for travel, work, and play."
+        detail: "Perfect for travel, work, and play.",
       },
       {
         heading: "Battery Life",
-        detail: "Extended playtime with quick charging capabilities."
-      }
-    ]
+        detail: "Extended playtime with quick charging capabilities.",
+      },
+    ],
   },
   {
     id: 2,
@@ -98,16 +109,16 @@ export const collections = [
     features: [
       {
         heading: "Professional Quality",
-        detail: "Engineered for studio and critical listening."
+        detail: "Engineered for studio and critical listening.",
       },
       {
         heading: "Comfort",
-        detail: "Long sessions, zero fatigue."
+        detail: "Long sessions, zero fatigue.",
       },
       {
         heading: "Sound Isolation",
-        detail: "Premium noise cancellation for pure audio experience."
-      }
-    ]
-  }
+        detail: "Premium noise cancellation for pure audio experience.",
+      },
+    ],
+  },
 ];
