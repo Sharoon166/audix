@@ -24,3 +24,9 @@ body {
   background-color: #fefefe ;
   color: var(--background);
 }
+.rightdiv {
+  cursor: url('/right.png'), auto;
+}
+.leftdiv {
+  cursor: url('/left.png'), auto;
+}
