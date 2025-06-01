@@ -129,7 +129,7 @@ export const collections = [
     id: 3,
     name: "Gaming Collection",
     description: "Ultimate gaming audio gear for immersive gameplay.",
-    image: "/earbuds/collection-3.webp",
+    image: "/earbuds/collection-3.png",
     products: [3],
     features: [
       {
