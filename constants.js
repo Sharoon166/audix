@@ -83,8 +83,8 @@ export const collections = [
     name: "Wireless Essentials",
     description:
       "A curated set of our best wireless audio products for on-the-go listening.",
-    image: "/collections/wireless-essentials.webp",
-    products: [1, 3], // references product ids
+    image: "/earbuds/Collection-1.webp",
+    products: [1],
     features: [
       {
         heading: "Freedom",
@@ -104,7 +104,7 @@ export const collections = [
     id: 2,
     name: "Studio Masterpieces",
     description: "Premium audio gear for professionals and audiophiles.",
-    image: "/collections/studio-masterpieces.png",
+    image: "/earbuds/collection-2.webp",
     products: [2],
     features: [
       {
@@ -118,6 +118,31 @@ export const collections = [
       {
         heading: "Sound Isolation",
         detail: "Premium noise cancellation for pure audio experience.",
+      },
+      {
+        heading:"High Resolution",
+        detail: "High-resolution audio with exceptional clarity",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Gaming Collection",
+    description: "Ultimate gaming audio gear for immersive gameplay.",
+    image: "/earbuds/collection-3.webp",
+    products: [3],
+    features: [
+      {
+        heading: "Gaming Performance",
+        detail: "Low latency and surround sound for competitive gaming.",
+      },
+      {
+        heading: "Customization",
+        detail: "RGB lighting and programmable controls.",
+      },
+      {
+        heading: "Communication",
+        detail: "Crystal-clear mic for team coordination.",
       },
     ],
   },

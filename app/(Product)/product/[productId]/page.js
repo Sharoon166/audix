@@ -32,29 +32,7 @@ export default function Page() {
 
   return (
     <div className="w-[95%] sm:w-[85%] p-4  mx-auto ">
-      <header className="flex flex-col sm:flex-row items-center justify-between font-sans">
-        <Link href="/">
-          <h2 className="font-molgan text-xl sm:text-2xl font-bold mb-4 sm:mb-0">
-            Audix
-          </h2>
-        </Link>
-        <nav>
-          <ul className="flex items-center gap-2 sm:gap-4 text-sm">
-            <li className="flex justify-end p-3 sm:p-6">
-              <button
-                onClick={()=>router.back()}
-                className="flex cursor-pointer items-center text-sm sm:text-md font-semibold hover:text-gray-600 transition-colors duration-300 group"
-              >
-                Back
-                <GoArrowUpLeft
-                  size={28}
-                  className="group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                />
-              </button>{" "}
-            </li>
-          </ul>
-        </nav>
-      </header>
+      
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0, zIndex: -99 }}
@@ -172,9 +150,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <footer className="text-sm flex justify-between items-center">
-        <p>&copy; {new Date().getFullYear()} Audix. All rights reserved.</p>
-      </footer>
+    
     </div>
   );
 }

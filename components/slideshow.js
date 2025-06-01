@@ -198,13 +198,13 @@ export default function Slideshow({ setSlide, setSlideLength }) {
           aria-hidden="true"
         >
           <div
-            className="w-1/3 cursor-none leftdiv"
+            className="w-1/3 cursor-none"
             id="left-div"
             onClick={handleLeftClick}
             onMouseEnter={() => handleMouseEnter("left-div")}
           />
           <div
-            className="w-2/3 cursor-none rightdiv"
+            className="w-2/3 cursor-none"
             id="right-div"
             onClick={handleRightClick}
             onMouseEnter={() => handleMouseEnter("right-div")}
