@@ -140,7 +140,7 @@ export default function CollectionPage() {
               className="space-y-6"
             >
               <h2 className="text-2xl sm:text-3xl font-molgan font-bold text-gray-900">
-                What's Included
+                What&apos;s Included
               </h2>
 
               <div className="space-y-4 sm:space-y-6">
